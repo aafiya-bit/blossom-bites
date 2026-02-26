@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Menu Items</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+
+<body>
+  <div class="acontainer">
+    <div class="card admin-card">
+      <h1>Manage Menu Items</h1>
+      <a href="/add-item" class="btn btn-primary-small">Add New Item</a>
+      <a href="/adminDash" class="btn btn-secondary-small">Back to Dashboard</a>
+
+      <div class="items-grid">
+        <% items.forEach(item=> { %>
+          <div class="item-card">
+            <img src="<%= item.image %>" alt="<%= item.name %>" class="item-image" />
+            <div class="item-details">
+              <h3>
+                <%= item.name %>
+              </h3>
+              <p>₹<%= item.price %>
+              </p>
+              <p>Category: <%= item.category %>
+              </p>
+              <div class="actions">
+                <form action="/edit-item/<%= item._id %>" method="GET">
+                  <button type="submit" class="btn btn-edit">Edit</button>
+                </form>
+                <!-- This is the delete form. It sends a POST request to the server. -->
+                <form action="/delete-item/<%= item._id %>" method="POST">
+                  <button type="submit" class="btn btn-delete">Delete</button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <% }); %>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

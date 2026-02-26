@@ -1,0 +1,46 @@
+<!-- <div class="container">
+  <div class="card">
+    <h1>Confirm Your Order</h1>
+    <p>An OTP has been sent to your email address to confirm your order.</p>
+
+    <form action="/verify-order-otp" method="POST" class="otp-form">
+      <input type="hidden" name="userId" value="<%= userId %>" />
+
+      <label for="otp">Enter OTP:</label>
+      <input type="text" id="otp" name="otp" required />
+
+      <button type="submit" class="btn">Verify Order</button>
+    </form>
+  </div>
+</div> -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verify Your Order - Blossom Bites</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="card otp-card">
+        <h1 class="card-title">Confirm Your Order</h1>
+        <p class="card-description">
+          An OTP has been sent to your email address to confirm your order.
+        </p>
+
+        <form action="/verify-order-otp" method="POST" class="otp-form">
+          <input type="hidden" name="userId" value="<%= userId %>" />
+
+          <label for="otp">Enter OTP:</label>
+          <input type="text" id="otp" name="otp" required />
+
+          <br /><button type="submit" class="btn btn-primary">
+            Verify Order
+          </button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

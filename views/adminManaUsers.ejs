@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Users</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+
+<body>
+  <div class="container">
+    <div class="card admin-card">
+      <h1>Manage Users</h1>
+      <a href="/adminDash" class="btn btn-secondary-small">Back to Dashboard</a>
+
+      <div class="users-list">
+        <% users.forEach(user=> { %>
+          <div class="user-card">
+            <div class="user-details">
+              <h3>
+                <%= user.userName %>
+              </h3>
+              <p>Email: <%= user.email %>
+              </p>
+              <p class="role">Role: <%= user.role %>
+              </p>
+            </div>
+            <% if (user.role !=='admin' ) { %>
+              <form action="/delete-user/<%= user._id %>" method="POST">
+                <button type="submit" class="btn btn-delete">Delete User</button>
+              </form>
+              <% } %>
+          </div>
+          <% }); %>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Home</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+
+<body>
+  <nav class="navbar">
+    <div>
+      <h2>Welcome, <%= user.userName %>
+      </h2>
+    </div>
+    <div>
+      <a href="/about" style="color: white; text-decoration: none; margin-left: 20px">About us</a>
+    </div>
+    <div>
+      <a href="/category" style="color: white; text-decoration: none; margin-left: 20px">Category</a>
+    </div>
+
+    <div>
+      <a href="/cart" style="color: white; text-decoration: none; margin-left: 20px">Cart</a>
+    </div>
+    <div>
+      <a href="/logout" style="color: white; text-decoration: none; margin-left: 20px">Logout</a>
+    </div>
+  </nav>
+  <div class="container">
+    <div id="welcome" class="screen active">
+      <div class="welcome-header">
+        <h1>Welcome to Blossom Bites</h1>
+        <p>Where delicious food meets girly charm</p>
+      </div>
+      <form action="/category">
+        <div style="text-align: center; margin: 30px 0">
+          <button class="btn" id="order-now-btn">
+            Order Now <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </form>
+
+      <div class="features">
+        <div class="feature">
+          <i class="fas fa-utensils"></i>
+          <h3>Fresh Food</h3>
+          <p>Delicious meals prepared daily with fresh ingredients</p>
+        </div>
+
+        <div class="feature">
+          <i class="fas fa-bolt"></i>
+          <h3>Fast Service</h3>
+          <p>Quick preparation and delivery to your location</p>
+        </div>
+
+        <div class="feature">
+          <i class="fas fa-tags"></i>
+          <h3>Best Prices</h3>
+          <p>Great food at affordable prices for students</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-content">
+      <p>© 2025 Blossom Bites Canteen. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+
+</html>

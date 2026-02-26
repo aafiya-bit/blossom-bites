@@ -1,0 +1,215 @@
+<head>
+  <title>Blossom Bites Canteen - Menu</title>
+
+  <link rel="stylesheet" href="/style.css" />
+</head>
+
+ <div id="menu" class="screen active">
+   <div class="header-content">
+            <a href="/category" class="logo">
+                <i class="fas fa-utensils"></i>
+                <h1>Blossom Bites</h1>
+            </a>
+            <div class="user-actions">
+                <button class="btn btn-secondary" id="logout-btn">Logout</button>
+                <button class="btn" id="view-cart-btn">
+                    <i class="fas fa-shopping-cart"></i> Cart
+                    <span class="cart-count" id="cart-count">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="category-tabs">
+            <div class="category-tab <%= (currentCategory === 'drinks') ? 'active' : '' %>" data-category="drinks">Drinks</div>
+            <div class="category-tab <%= (currentCategory === 'snacks') ? 'active' : '' %>" data-category="snacks">Snacks</div>
+            <div class="category-tab <%= (currentCategory === 'desserts') ? 'active' : '' %>" data-category="desserts">Desserts</div>
+            <div class="category-tab <%= (currentCategory === 'lunch') ? 'active' : '' %>" data-category="lunch">Lunch</div>
+        </div>
+
+        <div class="menu-header">
+            <button class="back-btn" onclick="window.location.href='/category'">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <h2 id="menu-title"><%= currentCategory.charAt(0).toUpperCase() + currentCategory.slice(1) %> Menu</h2>
+            <div class="cart-preview">
+                <span id="cart-preview-count">0 items</span>
+                <span>₹<span id="cart-preview-total">0</span></span>
+            </div>
+        </div>
+
+        <p class="menu-subtitle">
+            Select items to add to your cart
+        </p>
+
+        <div class="menu-items" id="menu-items-container">
+            <% if (menuItems && menuItems.length > 0) { %>
+                <% menuItems.forEach(function(item) { %>
+                    <div class="menu-item">
+                        <div class="menu-item-img">
+                            <i class="<%= item.icon %>"></i>
+                        </div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-title"><%= item.name %></div>
+                            <div class="menu-item-desc"><%= item.description %></div>
+                            <div class="menu-item-price">₹<%= item.price %></div>
+                            <button class="btn add-to-cart-btn" data-id="<%= item.id %>" data-name="<%= item.name %>" data-price="<%= item.price %>">Add to Cart</button>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <div class="no-items">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <p>No menu items found for this category.</p>
+                </div>
+            <% } %>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>© 2023 Blossom Bites Canteen. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div class="notification" id="notification"></div>
+
+    <script>
+        // Initialize the application
+        function initApp() {
+            // Load cart from localStorage
+            const savedCart = localStorage.getItem("cart");
+            let cart = [];
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+                updateCartDisplay(cart);
+            }
+
+            // Set up category tabs
+            document.querySelectorAll('.category-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    window.location.href = '/menu?category=' + category;
+                });
+            });
+
+            // Add event listeners to Add to Cart buttons
+            document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    const name = this.getAttribute('data-name');
+                    const price = parseInt(this.getAttribute('data-price'));
+
+                    addToCart(id, name, price, cart);
+                });
+            });
+
+            // View cart button
+            document.getElementById('view-cart-btn').addEventListener('click', function() {
+                window.location.href = '/cart';
+            });
+
+            // Logout button
+            document.getElementById('logout-btn').addEventListener('click', function() {
+                localStorage.removeItem('user');
+                localStorage.removeItem('cart');
+                window.location.href = '/login';
+            });
+        }
+
+        // Add item to cart
+        function addToCart(id, name, price, cart) {
+            const existingItem = cart.find(item => item.id === id);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id,
+                    name,
+                    price,
+                    quantity: 1
+                });
+            }
+
+            // Save to localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            updateCartDisplay(cart);
+            
+            // Show notification
+            showNotification(`${name} added to cart!`);
+        }
+
+        // Update cart display
+        function updateCartDisplay(cart) {
+            const cartCount = document.getElementById('cart-count');
+            const cartPreviewCount = document.getElementById('cart-preview-count');
+            const cartPreviewTotal = document.getElementById('cart-preview-total');
+            
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            const totalAmount = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+            
+            if (cartCount) cartCount.textContent = totalItems;
+            if (cartPreviewCount) cartPreviewCount.textContent = `${totalItems} ${totalItems === 1 ? 'item' : 'items'}`;
+            if (cartPreviewTotal) cartPreviewTotal.textContent = totalAmount;
+        }
+
+        // Show notification
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.style.opacity = '1';
+            
+            // Hide after 2 seconds
+            setTimeout(() => {
+                notification.style.opacity = '0';
+            }, 2000);
+        }
+
+        // Initialize the app
+        initApp();
+
+
+
+        // In your app.js or routes file
+const express = require('express');
+const router = express.Router();
+
+// Menu data (you might want to move this to a database)
+const menuItems = {
+  drinks: [
+    {
+      id: 1,
+      name: "Iced Coffee",
+      description: "Chilled coffee with milk and sweetener",
+      price: 300,
+      icon: "fas fa-coffee",
+    },
+    // ... other drinks
+  ],
+  snacks: [
+    // snack items
+  ],
+  desserts: [
+    // dessert items
+  ],
+  lunch: [
+    // lunch items
+  ]
+};
+
+// Menu route
+router.get('/menu', (req, res) => {
+  const category = req.query.category || 'drinks';
+  const items = menuItems[category] || [];
+  
+  res.render('menu', {
+    currentCategory: category,
+    menuItems: items
+  });
+});
+
+module.exports = router;
+    </script>

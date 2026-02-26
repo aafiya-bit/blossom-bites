@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+
+<body>
+  <div class="container">
+    <div class="card admin-card">
+      <h1>Welcome, <%= user.userName %> Aafiya!</h1>
+      <p>This is your central control panel.</p>
+
+      <div class="admin-links">
+        <a href="/add-item" class="btn">Add New Item</a>
+        <a href="/manage-items" class="btn">Manage Menu Items</a>
+        <a href="/manage-users" class="btn">Manage Users</a>
+        <a href="/logout" class="btn btn-logout">Logout</a>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

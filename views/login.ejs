@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+
+<body>
+  <div id="login" class="screen active">
+    <div class="login-header">
+      <h1>Blossom Bites</h1>
+    </div>
+
+    <form action="/login" method="post">
+      <div class="card">
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email" required />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="Enter your password" required />
+        </div>
+
+        <button type="submit" class="btn">Login</button>
+
+        <div class="form-footer">
+          <div class="remember-me">
+            <input type="checkbox" id="remember" name="remember" />
+            <label for="remember">Remember me</label>
+          </div>
+          <a href="#" style="color: #d8a0a6; text-decoration: none">Forgot Password?</a>
+        </div>
+
+        <p style="text-align: center; margin-top: 20px; color: #a1887f">
+          Don't have an account?
+          <a href="/" style="color: #d8a0a6; text-decoration: none">Sign up</a>
+        </p>
+
+        <div class="admin-login">
+          <p style="margin-bottom: 10px; color: #a1887f">Admin Login</p>
+          <a href="/admin-login" class="btn btn-admin">Admin Login</a>
+          <!-- <button type="button" class="btn btn-admin">Admin Login</button> -->
+        </div>
+      </div>
+    </form>
+  </div>
+</body>
+
+</html>

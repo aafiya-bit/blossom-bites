@@ -1,0 +1,41 @@
+<head>
+  <title>Checkput - Blossom Bites</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+
+<div class="container">
+  <div class="card">
+    <h1>Your Order</h1>
+    <% if (cart.length> 0) { %>
+      <ul class="order-list">
+        <% cart.forEach(item=> { %>
+          <li>
+            <span>
+              <%= item.name %>
+            </span>
+            <span>₹<%= item.price %> x <%= item.quantity %></span>
+            <span>₹<%= (item.price * item.quantity).toFixed(2) %></span>
+          </li>
+          <% }); %>
+      </ul>
+
+      <div class="bill-summary">
+        <p>Subtotal: <span>₹<%= subtotal %></span></p>
+        <p>Tax (8%): <span>₹<%= tax %></span></p>
+        <h3>Total: <span>₹<%= total %></span></h3>
+      </div>
+
+      <form action="/checkout" method="POST" class="checkout-form">
+        <button type="submit" class="btn">Confirm Order</button>
+      </form>
+      <% } else { %>
+
+        <p style="text-align: center">Your cart is empty.</p>
+        <a href="/category" class="btn" style="margin: 15;">Order now</a>
+
+
+
+
+        <% } %>
+  </div>
+</div>

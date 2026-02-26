@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add Menu Item</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+
+<body>
+  <div class="container">
+    <div class="card admin-card">
+      <h1>Add New Menu Item</h1>
+      <form action="/add-item" method="POST" class="add-item-form">
+        <label for="name">Item Name:</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="4" required></textarea>
+
+        <label for="price">Price (₹):</label>
+        <input type="number" id="price" name="price" step="0.01" required />
+
+        <label for="image">Image URL:</label>
+        <input type="text" id="image" name="image" required />
+
+        <label for="category">Category:</label>
+        <select id="category" name="category" required>
+          <option value="drinks">Drinks</option>
+          <option value="snacks">Snacks</option>
+          <option value="lunch">Lunch</option>
+          <option value="desserts">Desserts</option>
+        </select>
+
+        <button type="submit" class="btn">Add Item</button>
+        <a href="/adminDash" class="btn btn-secondary">Cancel</a>
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>

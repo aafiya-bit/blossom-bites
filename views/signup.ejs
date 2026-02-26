@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up - Blossom Bites</title>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"> -->
+    <link rel="stylesheet" href="/style.css" />
+    <!-- <style>
+        /* ===== GLOBAL STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            background-color: #fdf5f0;
+            color: #6d4c41;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .screen {
+            display: none;
+            animation: fadeIn 0.5s ease;
+            width: 100%;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(to right, #e8b4bc, #d8a0a6);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:hover {
+            background: linear-gradient(to right, #d8a0a6, #c98c92);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-secondary {
+            background: #a1887f;
+        }
+
+        .btn-secondary:hover {
+            background: #8d6e63;
+        }
+
+        .btn-admin {
+            background: linear-gradient(to right, #9c27b0, #673ab7);
+        }
+
+        .btn-admin:hover {
+            background: linear-gradient(to right, #7b1fa2, #5e35b1);
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #f8e0e0;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* ===== HEADER & NAVIGATION ===== */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            color: #d8a0a6;
+            font-weight: 700;
+        }
+
+        .logo i {
+            font-size: 1.8rem;
+            color: #d8a0a6;
+        }
+
+        /* ===== SIGNUP STYLES ===== */
+        #signup {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .signup-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .signup-header h1 {
+            font-size: 2.5rem;
+            color: #d8a0a6;
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .signup-header p {
+            color: #a1887f;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #8d6e63;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #f8e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            background: #fffafa;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            border-color: #e8b4bc;
+            outline: none;
+        }
+
+        .form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .terms {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #f8e0e0;
+        }
+
+        .error-message {
+            text-align: center;
+            margin: 15px 0;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: #ffebee;
+            color: #c62828;
+            display: none;
+        }
+
+        .success-message {
+            text-align: center;
+            margin: 15px 0;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            display: none;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 50px;
+            border-top: 1px solid #f8e0e0;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .form-footer {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+        }
+    </style> -->
+  </head>
+  <body>
+    <!-- <header>
+      <div class="header-content">
+        <a href="#" class="logo">
+          <i class="fas fa-utensils"></i>
+          <h1>Blossom Bites</h1>
+        </a>
+        <div class="user-actions">
+          <button class="btn btn-secondary" id="home-btn">Login</button>
+        </div>
+      </div>
+    </header> -->
+
+    <div class="container">
+      <div id="signup" class="screen active">
+        <div class="signup-header">
+          <h1>Create Account</h1>
+          <!-- <p>Join Blossom Bites to start ordering</p> -->
+        </div>
+        <!-- 
+        <div class="error-message" id="error-message"></div>
+        <div class="success-message" id="success-message"></div> -->
+        <div class="card">
+          <form id="signup-form" method="post" action="/signup">
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input
+                type="text"
+                id="name"
+                name="userName"
+                placeholder="Enter your full name"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Create a password"
+                required
+              />
+            </div>
+
+            <!-- <div class="form-group">
+              <label for="confirmPassword">Confirm Password</label>
+              <input
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                placeholder="Confirm your password"
+                required
+              />
+            </div> -->
+
+            <div class="form-footer">
+              <div class="terms">
+                <input type="checkbox" id="terms" name="terms" required />
+                <label for="terms">I agree to the Terms & Conditions</label>
+              </div>
+            </div>
+
+            <button type="submit" class="btn" style="width: 100%">
+              Create Account
+            </button>
+          </form>
+
+          <div class="login-link">
+            <p style="color: #a1887f">
+              Already have an account?
+              <a href="/login" style="color: #d8a0a6; text-decoration: none"
+                >Log in</a
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-content">
+        <p>© 2025 Blossom Bites Canteen. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      // Form validation
+      //   document
+      //     .getElementById("signup-form")
+      //     .addEventListener("submit", function (e) {
+      //       e.preventDefault();
+
+      //       const name = document.getElementById("name").value;
+      //       const email = document.getElementById("email").value;
+      //       const password = document.getElementById("password").value;
+      //       const confirmPassword =
+      //         document.getElementById("confirmPassword").value;
+      //       const terms = document.getElementById("terms").checked;
+
+      //       const errorElement = document.getElementById("error-message");
+      //       const successElement = document.getElementById("success-message");
+
+      //       // Reset messages
+      //       errorElement.style.display = "none";
+      //       successElement.style.display = "none";
+
+      //       // Validate form
+      //       if (!name || !email || !password || !confirmPassword) {
+      //         errorElement.textContent = "Please fill in all fields";
+      //         errorElement.style.display = "block";
+      //         return;
+      //       }
+
+      //       if (password !== confirmPassword) {
+      //         errorElement.textContent = "Passwords do not match";
+      //         errorElement.style.display = "block";
+      //         return;
+      //       }
+
+      //       if (password.length < 6) {
+      //         errorElement.textContent = "Password must be at least 6 characters";
+      //         errorElement.style.display = "block";
+      //         return;
+      //       }
+
+      //       if (!terms) {
+      //         errorElement.textContent =
+      //           "You must agree to the terms and conditions";
+      //         errorElement.style.display = "block";
+      //         return;
+      //       }
+
+      //       // In a real application, you would send this data to your server
+      //       // For this example, we'll just show a success message
+      //       successElement.textContent =
+      //         "Account created successfully! Redirecting to login...";
+      //       successElement.style.display = "block";
+
+      //       // Simulate successful signup and redirect
+      //       setTimeout(() => {
+      //         window.location.href = "/login";
+      //       }, 2000);
+      //     });
+
+      //   // Home button functionality
+      //   document
+      //     .getElementById("home-btn")
+      //     .addEventListener("click", function () {
+      //       window.location.href = "/";
+      //     });
+    </script>
+  </body>
+</html>
